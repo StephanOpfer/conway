@@ -3,22 +3,24 @@ import random
 
 pygame.init()
 
-BLACK = (255, 125, 255)
+BLACK = (255, 255, 255)
 GREY = (0, 0, 0)
-YELLOW = (0, 255, 0)
+YELLOW = (255, 0, 0)
 
 WIDTH, HEIGHT = 800, 800
 TILE_SIZE = 20
 GRID_WIDTH = WIDTH // TILE_SIZE
 GRID_HEIGHT = HEIGHT // TILE_SIZE
-FPS = 120
+FPS = 360
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 clock = pygame.time.Clock()
 
+
 def gen(num):
     return set([(random.randrange(0, GRID_HEIGHT), random.randrange(0, GRID_WIDTH)) for _ in range(num)])
+
 
 def draw_grid(positions):
     for position in positions:
@@ -31,6 +33,7 @@ def draw_grid(positions):
 
     for col in range(GRID_WIDTH):
         pygame.draw.line(screen, BLACK, (col * TILE_SIZE, 0), (col * TILE_SIZE, HEIGHT))
+
 
 def adjust_grid(positions):
     all_neighbors = set()
@@ -54,6 +57,7 @@ def adjust_grid(positions):
 
     return new_positions
 
+
 def get_neighbors(pos):
     x, y = pos
     neighbors = []
@@ -70,11 +74,12 @@ def get_neighbors(pos):
 
     return neighbors
 
+
 def main():
     running = True
     playing = False
     count = 0
-    update_freq = 120
+    update_freq = 10
 
     positions = set()
     while running:
@@ -120,8 +125,8 @@ def main():
         draw_grid(positions)
         pygame.display.update()
 
-
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
