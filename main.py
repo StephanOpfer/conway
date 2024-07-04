@@ -39,6 +39,7 @@ def adjust_grid(positions):
     all_neighbors = set()
     new_positions = set()
 
+    # decides which positions survive
     for position in positions:
         neighbors = get_neighbors(position)
         all_neighbors.update(neighbors)
@@ -48,6 +49,7 @@ def adjust_grid(positions):
         if len(neighbors) in [2, 3]:
             new_positions.add(position)
 
+    # decide which positions are born
     for position in all_neighbors:
         neighbors = get_neighbors(position)
         neighbors = list(filter(lambda x: x in positions, neighbors))
@@ -76,12 +78,14 @@ def get_neighbors(pos):
 
 
 def main():
+    # initialize basic variables
     running = True
     playing = False
     count = 0
-    update_freq = 10
-
+    update_freq = 30
     positions = set()
+
+    # endless loop for the game engine
     while running:
         clock.tick(FPS)
 
@@ -110,14 +114,17 @@ def main():
                     positions.add(pos)
 
             if event.type == pygame.KEYDOWN:
+                # start and stop the game
                 if event.key == pygame.K_SPACE:
                     playing = not playing
 
+                # clear the field
                 if event.key == pygame.K_c:
                     positions = set()
                     playing = False
                     count = 0
 
+                # generate random positions (pixels)
                 if event.key == pygame.K_g:
                     positions = gen(random.randrange(4, 10) * GRID_WIDTH)
 
