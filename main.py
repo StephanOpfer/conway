@@ -60,6 +60,7 @@ def adjust_grid(positions):
     return new_positions
 
 
+#  adjust  for continuous world
 def get_neighbors(pos):
     x, y = pos
     neighbors = []
