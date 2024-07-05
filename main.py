@@ -11,7 +11,7 @@ WIDTH, HEIGHT = 800, 800
 TILE_SIZE = 20
 GRID_WIDTH = WIDTH // TILE_SIZE
 GRID_HEIGHT = HEIGHT // TILE_SIZE
-FPS = 120
+FPS = 240
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
