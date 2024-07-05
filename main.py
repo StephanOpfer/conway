@@ -11,7 +11,7 @@ WIDTH, HEIGHT = 800, 800
 TILE_SIZE = 20
 GRID_WIDTH = WIDTH // TILE_SIZE
 GRID_HEIGHT = HEIGHT // TILE_SIZE
-FPS = 60
+FPS = 120
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -60,7 +60,6 @@ def adjust_grid(positions):
     return new_positions
 
 
-
 #  adjust  for continuous world
 def get_neighbors(pos):
     x, y = pos
@@ -81,10 +80,12 @@ def main():
     running = True
     playing = False
     count = 0
-    update_freq = 1
+    update_freq = 10
     positions = set()
+    new_position = set()
+    updatecount = 0
 
-    # endless loop for the game engine
+    #endless loop for the game engine
     while running:
         clock.tick(FPS)
 
@@ -93,7 +94,17 @@ def main():
 
         if count >= update_freq:
             count = 0
-            positions = adjust_grid(positions)
+            new_positions = adjust_grid(positions)
+            if new_positions==positions:
+                updatecount+= 1
+
+            positions = new_positions
+
+            if updatecount >= 3:
+                positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+
+
+
 
         pygame.display.set_caption("Start" if playing else "Pause")
 
