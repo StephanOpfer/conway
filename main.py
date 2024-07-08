@@ -1,3 +1,5 @@
+from typing import Set, Any
+
 import pygame
 import random
 
@@ -11,7 +13,7 @@ WIDTH, HEIGHT = 800, 800
 TILE_SIZE = 20
 GRID_WIDTH = WIDTH // TILE_SIZE
 GRID_HEIGHT = HEIGHT // TILE_SIZE
-FPS = 120
+FPS = 10
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -84,6 +86,12 @@ def main():
     positions = set()
     new_position = set()
     updatecount = 0
+    gen_count = 0
+    list_of_position = list ()
+    len_value= set ()
+
+
+
 
     #endless loop for the game engine
     while running:
@@ -94,17 +102,20 @@ def main():
 
         if count >= update_freq:
             count = 0
+            new_position = adjust_grid(positions)
+            list_of_position.append(positions)
+            len_value = len(list_of_position)
+            print(len_value)
             new_positions = adjust_grid(positions)
-            if new_positions==positions:
-                updatecount+= 1
+            if len(list_of_position) == 6:
+                print(list_of_position[1])
+                del list_of_position[1]
+                del list_of_position[1]
+                del list_of_position[1]
+                del list_of_position[1]
+                del list_of_position[1]
 
-            positions = new_positions
-
-            if updatecount >= 3:
-                positions = gen(random.randrange(4, 10) * GRID_WIDTH)
-
-
-
+            positions= new_position
 
         pygame.display.set_caption("Start" if playing else "Pause")
 
@@ -137,6 +148,8 @@ def main():
                 # generate random positions (pixels)
                 if event.key == pygame.K_g:
                     positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+                    if event.key == pygame.K_f:
+                        positions = gen(random.randrange(4, 10) * GRID_WIDTH)
 
         screen.fill(GREY)
         draw_grid(positions)
