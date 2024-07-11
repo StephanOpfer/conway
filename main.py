@@ -9,9 +9,10 @@ pygame.init()
 BLACK = (255, 255, 255)
 GREY = (0, 0, 0)
 YELLOW = (255, 0, 0)
+GREEN = (0, 255, 0)
 
 WIDTH, HEIGHT = 800, 800
-TILE_SIZE = 20
+TILE_SIZE = 10
 GRID_WIDTH = WIDTH // TILE_SIZE
 GRID_HEIGHT = HEIGHT // TILE_SIZE
 FPS = 240
@@ -85,21 +86,26 @@ def Zellen ():
     positions= set
     if len(list_of_position) == 6:
         if list_of_position[2] == list_of_position[4]:
-
-            list_of_position.clear()
             positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+            Löschen()
 
 
 
 
     else:
-       list_of_position.clear()
+            Löschen()
 
 
 
 
 
 
+def Löschen():
+    list_of_position= list()
+    del list_of_position[1]
+    del list_of_position[1]
+    del list_of_position[1]
+    del list_of_position[1]
 
 
 def main():
@@ -126,27 +132,24 @@ def main():
                 positions = adjust_grid(positions)
                 list_of_position.append(positions)
                 len_value = len(list_of_position)
-                print(len_value)
                 new_positions = adjust_grid(positions)
-                if len(list_of_position) == 6:
-                    Zellen()
-                    print(list_of_position[1])
 
-                    #if list_of_position[1] == list_of_position[3]:
-                       # gen_count += 1
-                        #positions = gen(random.randrange(4, 10) * GRID_WIDTH)
-                        #del list_of_position[1]
-                        #del list_of_position[1]
-                        #del list_of_position[1]
-                        #del list_of_position[1]
-                        #del list_of_position[1]
+            if len(list_of_position) == 6:
 
-                    #else:
-                     #   del list_of_position[1]
-                      #  del list_of_position[1]
-                       # del list_of_position[1]
-                        #del list_of_position[1]
-                        #del list_of_position[1]
+                    if list_of_position[2] == list_of_position[4]:
+                        gen_count += 1
+                        positions = gen(random.randrange(40, 100) * GRID_WIDTH)
+                        del list_of_position[1]
+                        del list_of_position[1]
+                        del list_of_position[1]
+                        del list_of_position[1]
+
+
+                    else:
+                        del list_of_position[1]
+                        del list_of_position[1]
+                        del list_of_position[1]
+                        del list_of_position[1]
 
         pygame.display.set_caption("Start" if playing else "Pause")
 
@@ -178,7 +181,7 @@ def main():
 
                 #generate random positions (pixels)
                 if event.key == pygame.K_g:
-                    positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+                    positions = gen(random.randrange(40, 100) * GRID_WIDTH)
 
         screen.fill(GREY)
         draw_grid(positions)
