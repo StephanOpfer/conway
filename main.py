@@ -19,19 +19,14 @@ FPS = 240
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 clock = pygame.time.Clock()
-def list_of_posi():
+#def list_of_posi(pos):
+  #  list_of_position = list
+   # if list_of_position[1] == list_of_position[3]:
+    #    positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+     #   list_of_position.pop
 
-    list_of_position=list
-    gen_count = 0
 
-    if list_of_position[1] == list_of_position[3]:
-        positions = gen(random.randrange(4, 10) * GRID_WIDTH)
 
-        list_of_position.pop
-
-    else:
-
-        list_of_position.pop
 
 def gen(num):
     return set([(random.randrange(0, GRID_HEIGHT), random.randrange(0, GRID_WIDTH)) for _ in range(num)])
@@ -71,7 +66,6 @@ def adjust_grid(positions):
 
     return new_positions
 
-
 #  adjust  for continuous world
 def get_neighbors(pos):
     x, y = pos
@@ -85,6 +79,27 @@ def get_neighbors(pos):
             neighbors_y = (y + dy) % GRID_HEIGHT
             neighbors.append((neighbors_x, neighbors_y))
     return neighbors
+def Zellen ():
+    list_of_position= list()
+    objeckt = False
+    positions= set
+    if len(list_of_position) == 6:
+        if list_of_position[2] == list_of_position[4]:
+
+            list_of_position.clear()
+            positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+
+
+
+
+    else:
+       list_of_position.clear()
+
+
+
+
+
+
 
 
 def main():
@@ -97,50 +112,41 @@ def main():
     new_position = set()
     updatecount = 0
     gen_count = 0
-    list_of_position = list ()
-    len_value= set ()
-
-
-
-
+    list_of_position = list()
+    len_value = set()
     #endless loop for the game engine
     while running:
         clock.tick(FPS)
-
         if playing:
             count += 1
 
-        if count >= update_freq:
-            count = 0
-            positions = adjust_grid(positions)
-            list_of_position.append(positions)
-
-
-            len_value = len(list_of_position)
-            new_positions = adjust_grid(positions)
-            if len(list_of_position) == 6:
-                en_value = len(list_of_position)
+            if count >= update_freq:
+                count = 0
+                new_position = adjust_grid(positions)
+                positions = adjust_grid(positions)
+                list_of_position.append(positions)
+                len_value = len(list_of_position)
                 print(len_value)
                 new_positions = adjust_grid(positions)
                 if len(list_of_position) == 6:
-                    if list_of_position[1] == list_of_position[3]:
-                        positions = gen(random.randrange(4, 10) * GRID_WIDTH)
-                        del list_of_position[1]
-                        del list_of_position[1]
-                        del list_of_position[1]
-                        del list_of_position[1]
-                        del list_of_position[1]
+                    Zellen()
+                    print(list_of_position[1])
 
+                    #if list_of_position[1] == list_of_position[3]:
+                       # gen_count += 1
+                        #positions = gen(random.randrange(4, 10) * GRID_WIDTH)
+                        #del list_of_position[1]
+                        #del list_of_position[1]
+                        #del list_of_position[1]
+                        #del list_of_position[1]
+                        #del list_of_position[1]
 
-
-
-                    else:
-
-                        del list_of_position[1]
-                        del list_of_position[1]
-                        del list_of_position[1]
-                        del list_of_position[1]
-                        del list_of_position[1]
+                    #else:
+                     #   del list_of_position[1]
+                      #  del list_of_position[1]
+                       # del list_of_position[1]
+                        #del list_of_position[1]
+                        #del list_of_position[1]
 
         pygame.display.set_caption("Start" if playing else "Pause")
 
